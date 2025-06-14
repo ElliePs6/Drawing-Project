@@ -115,10 +115,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &6475317670613170871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +256,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tip: {fileID: 0}
   penSize: 5
+  _tipHeight: 0.01
+  tipMaterial: {fileID: 0}
+  colorPalette: []
+  grabDistance: 0.15
+  leftHandTransform: {fileID: 0}
+  rightHandTransform: {fileID: 0}
   grabbable: {fileID: 6475317670613170871}
   leftTriggerAction: {fileID: -2439264783773714294, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   rightTriggerAction: {fileID: 0}
@@ -416,8 +422,8 @@ Transform:
   m_GameObject: {fileID: 7841792779552762552}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00126, y: -0.00189, z: 0.00011}
-  m_LocalScale: {x: 0.002, y: 0.005, z: 0.005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8321974488426029484}
@@ -511,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8321974488426029484
 Transform:
   m_ObjectHideFlags: 0
@@ -520,11 +526,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8340107529668001758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.60637856, y: -0.33914006, z: -0.3190311, w: 0.6445994}
-  m_LocalPosition: {x: 0.00133, y: 0.00155, z: -0.00075}
+  m_LocalRotation: {x: -0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2805696057709003342}
   m_Father: {fileID: 3986344503693336261}
-  m_LocalEulerAnglesHint: {x: -86.5, y: -55.5, z: 0}
+  m_LocalEulerAnglesHint: {x: -75, y: 0, z: 0}

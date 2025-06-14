@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PaintCanvas
   - BrushTip
+  - Brush
   layers:
   - Default
   - TransparentFX

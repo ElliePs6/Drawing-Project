@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using System.Linq;
+using UnityEngine.XR.Hands;
+using UnityEngine.XR.Management;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class Pen : MonoBehaviour
 {
@@ -12,7 +15,7 @@ public class Pen : MonoBehaviour
     [SerializeField] private int penSize = 5;
     private Renderer _renderer;
     private Color[] brushColors;
-    private float _tipHeight = 0.04f;
+    [SerializeField] private float _tipHeight = 0.01f;
     private RaycastHit _touch;
     private PaintCanvas _paintcanvas;
 
@@ -20,38 +23,38 @@ public class Pen : MonoBehaviour
     private Vector2 _lastTouchPos;
     private Quaternion _lastTouchRot;
     private bool _touchedLastFrame; 
-    
-
-    //public Material drawingMaterial;
     public Material tipMaterial;
     public Color[] colorPalette;
-    //private Vector3 _frozenPosition;
-    // private Quaternion _frozenRotation;
-
-    //[Range(0.001f, 0.01f)]
-    // public float tipWidth = 0.001f;
+    private int currentColorIndex;
 
 
+    /// <HandTracking>
+    //private XRHandSubsystem handSubsystem;
+    public float grabDistance = 0.15f;
+    public Transform leftHandTransform;
+    public Transform rightHandTransform;
 
+    //private bool isHeldByHand = false;
+   // private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable leftGrabbable = null;
+    //private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable rightGrabbable = null;
 
+   // private bool isLeftHolding = false;
+   // private bool isRightHolding = false;
 
-
-
-    [Header("XR Interaction")]
+    /// </HandTracking>
+   
+    /// <Controllers>
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable  grabbable;
     public InputActionReference leftTriggerAction;
     public InputActionReference rightTriggerAction;
+    private XRBaseInteractor interactorHoldingPen;
 
-    private int currentColorIndex;
-
-    private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactorHoldingPen;
+    /// <Controllers>
 
     private void OnEnable()
     {
         grabbable.selectEntered.AddListener(OnGrab);
-        grabbable.selectExited.AddListener(OnRelease);
-
-       // changeColorAction.action.performed += ctx => SwitchColor();
+        grabbable.selectExited.AddListener(OnRelease);     
     }
 
     private void OnDisable()
@@ -59,15 +62,15 @@ public class Pen : MonoBehaviour
         grabbable.selectEntered.RemoveListener(OnGrab);
         grabbable.selectExited.RemoveListener(OnRelease);
 
-        //changeColorAction.action.performed -= ctx => SwitchColor();
-    }
+    }  
 
+  
 
     private void Start()
     {
         currentColorIndex = 0;
         tipMaterial.color = colorPalette[currentColorIndex];
-        //tip.localScale = new Vector3(tipWidth, tipWidth, tipWidth);
+        
 
         _renderer = tip.GetComponent<Renderer>();
         Debug.Log("To xrwma einai " + _renderer.material.color.ToString());
@@ -77,76 +80,98 @@ public class Pen : MonoBehaviour
         AllocateBrushColors();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //Debug.Log(interactorHoldingPen == null);
         if (interactorHoldingPen != null)
         {
             bool triggerPressed = false;
             //Debug.Log(interactorHoldingPen.transform.parent.name);
             if (interactorHoldingPen.transform.parent.name.Contains("Left") || interactorHoldingPen.transform.parent.name.Contains("Right"))
             {
-              
                 triggerPressed = leftTriggerAction.action.IsPressed();
                 triggerPressed = rightTriggerAction.action.IsPressed();
                 Debug.Log("kalw thn draw");
                 Draw();
-               
+
             }
-        }   
+        }
 
     }
-
-
-
-    private void OnGrab(SelectEnterEventArgs args)
+    private void Update()
     {
-        interactorHoldingPen = args.interactorObject.transform.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>();
-    }
+        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.forward * 0.1f, Color.green);
+        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.up * 0.1f, Color.red);
+        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.right * 0.1f, Color.blue);
 
+        Debug.Log("New parent is now: " + this.gameObject.transform.parent);
+
+
+    }
+    private void OnGrab(SelectEnterEventArgs args)
+
+    {
+        interactorHoldingPen = args.interactorObject.transform.GetComponent<XRBaseInteractor>();
+   
+      
+        //isHeldByHand = true;
+    
+
+       
+    }
     private void OnRelease(SelectExitEventArgs args)
     {
         interactorHoldingPen = null;
-   
+        //isHeldByHand = false;
+
     }
+
+
 
     private void Draw()
     {
-           
-        if (Physics.Raycast(tip.position, transform.up, out _touch, _tipHeight))
+        Debug.Log("Trying to draw...");
+
+        //if (Physics.Raycast(tip.position, tip.forward, out _touch, _tipHeight))
+
+       if (Physics.Raycast(tip.position, transform.up, out _touch, _tipHeight))
         {
-            Debug.Log("petuxa to " + _touch.transform.gameObject.name);
+            Debug.Log("Raycast hit: " + _touch.transform.gameObject.name);
+
             if (_touch.transform.CompareTag("PaintCanvas"))
             {
-                Debug.Log("eimai o canvas");
+                Debug.Log("Hit object is PaintCanvas");
+
                 if (_paintcanvas == null)
                 {
-
                     _paintcanvas = _touch.transform.GetComponent<PaintCanvas>();
-                    Debug.Log("eimai o paintcanvas" + _paintcanvas);
+                    Debug.Log("Got PaintCanvas component: " + _paintcanvas);
                 }
-                _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
 
+                _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
                 var x = (int)(_touchPos.x * _paintcanvas.textureSize.x - (penSize / 2));
                 var y = (int)(_touchPos.y * _paintcanvas.textureSize.y - (penSize / 2));
-                if (y < 0 || y > _paintcanvas.textureSize.y || x < 0 || x > _paintcanvas.textureSize.x) return;
-                // = Mathf.Clamp(x, 0, (int)_paintcanvas.textureSize.x - penSize);
-               // y = Mathf.Clamp(y, 0, (int)_paintcanvas.textureSize.y - penSize);
+
+                x = Mathf.Clamp(x, 0, (int)_paintcanvas.textureSize.x - penSize);
+                y = Mathf.Clamp(y, 0, (int)_paintcanvas.textureSize.y - penSize);
 
                 if (_touchedLastFrame)
                 {
+                    Debug.Log("Drawing pixels and interpolating...");
                     _paintcanvas.texture.SetPixels(x, y, penSize, penSize, brushColors);
 
-                    for (float f = 0.01f; f < 1.00f; f += 0.01f)//how much percent do you want
+                    if (Vector2.Distance(_lastTouchPos, new Vector2(x, y)) > 1f)
                     {
-                        Debug.Log("Mphka sth for");
-                        var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
-                        var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
-                        _paintcanvas.texture.SetPixels(lerpX, lerpY, penSize, penSize, brushColors);
+                        for (float f = 0.01f; f < 1.00f; f += 0.01f)
+                        {
+                            var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
+                            var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
+                            _paintcanvas.texture.SetPixels(lerpX, lerpY, penSize, penSize, brushColors);
+                        }
                     }
-                    transform.rotation = _lastTouchRot;
+
+                  transform.rotation = _lastTouchRot;
                     _paintcanvas.texture.Apply();
-                    Debug.Log("I apply it");
+                    Debug.Log("Applied texture changes.");
                 }
 
                 _lastTouchPos = new Vector2(x, y);
@@ -154,29 +179,73 @@ public class Pen : MonoBehaviour
                 _touchedLastFrame = true;
                 return;
             }
+            else
+            {
+                Debug.Log("Raycast hit something, but it's not a PaintCanvas.");
+            }
         }
+        else
+        {
+            Debug.Log("Raycast did not hit anything.");
+        }
+
+        if (_paintcanvas != null)
+            Debug.Log("Resetting _paintcanvas");
 
         _paintcanvas = null;
         _touchedLastFrame = false;
     }
+
     private void AllocateBrushColors()
     {
         brushColors = new Color[penSize * penSize];
         for (int i = 0; i < brushColors.Length; i++)
             brushColors[i] = colorPalette[currentColorIndex];
     }
- 
 
-     public void SwitchColor(Color newColor)
-     {
-         tipMaterial.color = newColor;
 
-         // Update the brush color
-         for (int i = 0; i < brushColors.Length; i++)
-         {
-             brushColors[i] = newColor;
-         }
-        _renderer.material.color = newColor;
-     }
+    public void SwitchColor(Color newColor)
+    {
+        Debug.Log($"[SwitchColor] Called with color: {newColor}");
+
+        // Update tip material color
+        if (tipMaterial != null)
+        {
+            tipMaterial.color = newColor;
+            Debug.Log($"[SwitchColor] tipMaterial color set to: {tipMaterial.color}");
+        }
+        else
+        {
+            Debug.LogWarning("[SwitchColor] tipMaterial is null");
+        }
+
+        // Update the brush color array
+        for (int i = 0; i < brushColors.Length; i++)
+        {
+            brushColors[i] = newColor;
+        }
+        Debug.Log($"[SwitchColor] brushColors array updated. First value: {brushColors[0]}");
+
+        // Update the pen's renderer material
+        if (_renderer != null)
+        {
+            _renderer.material.color = newColor;
+            Debug.Log($"[SwitchColor] _renderer material color set to: {_renderer.material.color}");
+        }
+        else
+        {
+            Debug.LogWarning("[SwitchColor] _renderer is null");
+        }
+    }
+
+
+
 
 }
+
+
+
+
+
+
+
