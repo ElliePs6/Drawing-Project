@@ -2637,7 +2637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16923,19 +16923,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1764298896558845619, guid: a4bcb25e206ff274b8fabfa6d5460c15, type: 3}
       propertyPath: m_Height
-      value: 2
+      value: 4.59
       objectReference: {fileID: 0}
     - target: {fileID: 1764298896558845619, guid: a4bcb25e206ff274b8fabfa6d5460c15, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1764298896558845619, guid: a4bcb25e206ff274b8fabfa6d5460c15, type: 3}
       propertyPath: m_Center.y
-      value: 1
+      value: 0.76072
       objectReference: {fileID: 0}
     - target: {fileID: 1764298896558845619, guid: a4bcb25e206ff274b8fabfa6d5460c15, type: 3}
       propertyPath: m_StepOffset
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6472871228413160452, guid: a4bcb25e206ff274b8fabfa6d5460c15, type: 3}
       propertyPath: m_Name
