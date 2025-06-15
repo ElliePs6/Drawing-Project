@@ -197,7 +197,7 @@ public class Pen : MonoBehaviour
         // Update tip material color
         if (tipMaterial != null)
         {
-            tipMaterial.color = newColor;
+            tipMaterial.SetColor("_BaseColor", newColor);
             //Debug.Log($"[SwitchColor] tipMaterial color set to: {tipMaterial.color}");
         }
         else
@@ -213,15 +213,7 @@ public class Pen : MonoBehaviour
         //Debug.Log($"[SwitchColor] brushColors array updated. First value: {brushColors[0]}");
 
         // Update the pen's renderer material
-        if (_renderer != null)
-        {
-            _renderer.material.color = newColor;
-           // Debug.Log($"[SwitchColor] _renderer material color set to: {_renderer.material.color}");
-        }
-        else
-        {
-           // Debug.LogWarning("[SwitchColor] _renderer is null");
-        }
+   
     }
 
 

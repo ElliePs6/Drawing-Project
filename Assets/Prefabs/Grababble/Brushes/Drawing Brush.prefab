@@ -254,14 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7ef841f543e614fa50d2390c372c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: {fileID: 0}
+  tip: {fileID: 3456799715165022094}
   penSize: 5
   _tipHeight: 0.01
-  tipMaterial: {fileID: 0}
-  colorPalette: []
-  grabDistance: 0.15
-  leftHandTransform: {fileID: 0}
-  rightHandTransform: {fileID: 0}
+  tipMaterial: {fileID: 2100000, guid: f88cb2033b0921f4583ba297863b060e, type: 2}
+  colorPalette:
+  - {r: 0.14509805, g: 0.5372549, b: 0.003921569, a: 1}
   grabbable: {fileID: 6475317670613170871}
   leftTriggerAction: {fileID: -2439264783773714294, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   rightTriggerAction: {fileID: 0}
@@ -351,7 +349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e50d03b9cc293347947cbefe06607f0, type: 2}
+  - {fileID: 2100000, guid: f88cb2033b0921f4583ba297863b060e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -423,7 +421,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.001, y: 0.005, z: 0.005}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8321974488426029484}
@@ -517,7 +515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8321974488426029484
 Transform:
   m_ObjectHideFlags: 0
@@ -526,11 +524,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8340107529668001758}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalRotation: {x: -0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2805696057709003342}
   m_Father: {fileID: 3986344503693336261}
-  m_LocalEulerAnglesHint: {x: -75, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -50, y: 0, z: 0}
