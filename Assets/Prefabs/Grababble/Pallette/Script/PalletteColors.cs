@@ -12,32 +12,32 @@ public class PalletteColors : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No Renderer found on " + gameObject.name);
+           // Debug.LogError("No Renderer found on " + gameObject.name);
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log($"[OnTriggerEnter] Triggered by: {collision.gameObject.name}, Tag: {collision.gameObject.tag}");
+       // Debug.Log($"[OnTriggerEnter] Triggered by: {collision.gameObject.name}, Tag: {collision.gameObject.tag}");
 
         if (collision.gameObject.CompareTag("BrushTip"))
         {
-            Debug.Log("[OnTriggerEnter] BrushTip tag matched.");
+           // Debug.Log("[OnTriggerEnter] BrushTip tag matched.");
 
             Pen pen = collision.gameObject.GetComponent<Pen>();
             if (pen != null)
             {
-                Debug.Log("[OnTriggerEnter] Pen component found. Switching color...");
+               // Debug.Log("[OnTriggerEnter] Pen component found. Switching color...");
                 pen.SwitchColor(color);
             }
             else
             {
-                Debug.LogWarning("[OnTriggerEnter] No Pen component found on the BrushTip object.");
+                //ebug.LogWarning("[OnTriggerEnter] No Pen component found on the BrushTip object.");
             }
         }
         else
         {
-            Debug.Log("[OnTriggerEnter] Tag did not match BrushTip.");
+           // Debug.Log("[OnTriggerEnter] Tag did not match BrushTip.");
         }
     }
 
