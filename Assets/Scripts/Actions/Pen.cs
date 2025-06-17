@@ -131,19 +131,30 @@ public class Pen : MonoBehaviour
     {
         Debug.Log("Trying to draw...");
 
-        //if (Physics.Raycast(tip.position, tip.forward, out _touch, _tipHeight))
+        // Visualize the ray in the Scene view
+        Debug.DrawRay(tip.position, transform.up * _tipHeight, Color.red, 0.1f);
 
-       if (Physics.Raycast(tip.position, transform.up, out _touch, _tipHeight))
+        if (Physics.Raycast(tip.position, transform.up, out _touch, _tipHeight))
         {
+<<<<<<< Updated upstream:Assets/Scripts/Actions/Pen.cs
             Debug.Log("Raycast hit: " + _touch.transform.gameObject.name);
+=======
+            Debug.Log("Raycast hit: " + _touch.collider.gameObject.name);
+            Debug.Log("Raycast hit: " + _touch.collider.gameObject.tag);
 
-            if (_touch.transform.CompareTag("PaintCanvas"))
+            if (_touch.collider.CompareTag("PaintCanvas"))
+>>>>>>> Stashed changes:Assets/Prefabs/Grababble/Brushes/Script/Pen.cs
+
             {
                 Debug.Log("Hit object is PaintCanvas");
 
                 if (_paintcanvas == null)
                 {
+<<<<<<< Updated upstream:Assets/Scripts/Actions/Pen.cs
                     _paintcanvas = _touch.transform.GetComponent<PaintCanvas>();
+=======
+                    _paintcanvas = _touch.collider.GetComponent<PaintCanvas>();
+>>>>>>> Stashed changes:Assets/Prefabs/Grababble/Brushes/Script/Pen.cs
                     Debug.Log("Got PaintCanvas component: " + _paintcanvas);
                 }
 
@@ -169,7 +180,7 @@ public class Pen : MonoBehaviour
                         }
                     }
 
-                  transform.rotation = _lastTouchRot;
+                    transform.rotation = _lastTouchRot;
                     _paintcanvas.texture.Apply();
                     Debug.Log("Applied texture changes.");
                 }
