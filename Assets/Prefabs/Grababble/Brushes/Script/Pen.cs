@@ -86,9 +86,9 @@ public class Pen : MonoBehaviour
     }
     private void Update()
     {
-        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.forward * 0.1f, Color.green);
+      /**  Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.forward * 0.1f, Color.green);
         Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.up * 0.1f, Color.red);
-        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.right * 0.1f, Color.blue);
+        Debug.DrawRay(grabbable.attachTransform.position, grabbable.attachTransform.right * 0.1f, Color.blue);**/
 
        
 
@@ -96,6 +96,7 @@ public class Pen : MonoBehaviour
     private void OnGrab(SelectEnterEventArgs args)
 
     {
+        this.GetComponent<BoxCollider>().enabled = false;
         interactorHoldingPen = args.interactorObject.transform.GetComponent<XRBaseInteractor>();
    
       
@@ -106,6 +107,7 @@ public class Pen : MonoBehaviour
     }
     private void OnRelease(SelectExitEventArgs args)
     {
+        this.GetComponent<BoxCollider>().enabled = true;
         interactorHoldingPen = null;
         //isHeldByHand = false;
 

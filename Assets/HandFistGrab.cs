@@ -5,9 +5,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class HandFistGrab : MonoBehaviour
 {
-    public StaticHandGesture fistGesture; // The gesture script with "Fist"
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor handInteractor; // The hand's Near/Far interactor
-    public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable penInteractable; // The pen object
+    /** public StaticHandGesture fistGesture; // The gesture script with "Fist"
+   // public UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor handInteractor; // The hand's Near/Far interactor
+   // public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable penInteractable; // The pen object
 
     private bool isGrabbing;
 
@@ -25,7 +25,7 @@ public class HandFistGrab : MonoBehaviour
         }
     }
 
-  /**  private void OnDisable()
+   private void OnDisable()
     {
         if (fistGesture != null)
         {
@@ -33,7 +33,7 @@ public class HandFistGrab : MonoBehaviour
             fistGesture.gesturePerformed.RemoveListener(OnFist);
             fistGesture.gestureEnded.RemoveListener(OnRelease);
         }
-    }**/
+  
 
     public void OnFist()
     {
@@ -45,7 +45,8 @@ public class HandFistGrab : MonoBehaviour
             return;
         }  **/
 
-        if (handInteractor == null || penInteractable == null)
+      
+      /**  if (handInteractor == null || penInteractable == null)
         {
             Debug.LogWarning("[HandFistGrab] Missing interactor or interactable.");
             return;
@@ -93,6 +94,6 @@ public class HandFistGrab : MonoBehaviour
         }
 
         isGrabbing = false;
-    }
+    }  **/
 
 }
