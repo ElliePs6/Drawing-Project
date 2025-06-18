@@ -32,8 +32,6 @@ public class Pen : MonoBehaviour
    
     /// <Controllers>
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable  grabbable;
-    public InputActionReference leftTriggerAction;
-    public InputActionReference rightTriggerAction;
     private XRBaseInteractor interactorHoldingPen;
 
     /// <Controllers>
@@ -71,12 +69,11 @@ public class Pen : MonoBehaviour
     {
         if (interactorHoldingPen != null)
         {
-            bool triggerPressed = false;
+           
             //Debug.Log(interactorHoldingPen.transform.parent.name);
             if (interactorHoldingPen.transform.parent.name.Contains("Left") || interactorHoldingPen.transform.parent.name.Contains("Right"))
             {
-                triggerPressed = leftTriggerAction.action.IsPressed();
-                triggerPressed = rightTriggerAction.action.IsPressed();
+               
                 Debug.Log("kalw thn draw");
                 Draw();
 

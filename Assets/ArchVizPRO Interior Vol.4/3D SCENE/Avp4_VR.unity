@@ -2614,7 +2614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2913,15 +2913,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2506937475235547492, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.6905
+      value: -16.879
       objectReference: {fileID: 0}
     - target: {fileID: 2506937475235547492, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1895
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 2506937475235547492, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.674
+      value: -8.667
       objectReference: {fileID: 0}
     - target: {fileID: 2506937475235547492, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6130,6 +6130,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251cba2a8ebc34b478c527250e88a5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &801034396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3951836344849355828, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+  m_PrefabInstance: {fileID: 2089805626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &801034405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801034396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a11c5a2424fdb4db60443ab9791df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: {fileID: 0}
 --- !u!1 &814752700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010012945590, guid: 8ce82bde432adee4c887fce8b98a6084, type: 3}
@@ -21238,10 +21256,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'DrawBrush '
       objectReference: {fileID: 0}
+    - target: {fileID: 4052603804901532190, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 17.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6321144860491593383, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 17.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945250511629220930, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_Drag
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945250511629220930, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945250511629220930, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945250511629220930, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3951836344849355828, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 801034405}
   m_SourcePrefab: {fileID: 100100000, guid: 7efa2566617a3ef409d5d1b726b7abe9, type: 3}
 --- !u!1001 &2090154708
 PrefabInstance:
